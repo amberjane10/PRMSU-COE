@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRMSU College of Engineering</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1e1e1e;
+            color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: url('https://www.transparenttextures.com/patterns/graphy.png');
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            width: 100%;
+            background-color: #2b2b2b;
+            color: #f5f5f5;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .hamburger {
+            font-size: 1.5rem;
+            display: none;
+            cursor: pointer;
+            color: #ffd700;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin: 0 15px;
+        }
+
+        .nav-menu a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: #ffd700;
+        }
+
+        .dropdown-parent {
+            position: relative;
+        }
+
+        .dropdown-toggle:after {
+            content: " ▼";
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #3a3a3a;
+            list-style: none;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ffd700;
+        }
+
+        .dropdown li {
+            padding: 5px 10px;
+        }
+
+        .dropdown li a {
+            color: #f5f5f5;
+        }
+
+        .dropdown li a:hover {
+            color: #ffd700;
+        }
+
+        .dropdown-parent:hover .dropdown {
+            display: block;
+        }
+
+        /* Content Styling */
+        .content {
+            width: 90%;
+            margin: 40px 0;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+            background-color: #2b2b2b;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        h2, h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #00bcd4;
+            text-transform: uppercase;
+        }
+
+        p, li {
+            font-size: 1rem;
+            color: #dcdcdc;
+            line-height: 1.5;
+        }
+
+        ul {
+            text-align: left;
+            margin: 20px auto;
+            padding: 10px 20px;
+            list-style-type: none;
+            border-left: 3px solid #ffd700;
+        }
+
+        li {
+            padding: 5px 0;
+        }
+
+        li:before {
+            content: "• ";
+            color: #00bcd4;
+            font-weight: bold;
+        }
+
+        /* Faculty Columns Styling */
+        .department-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .department-column {
+            background-color: #2b2b2b;
+            padding: 15px;
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .department-column h3 {
+            font-size: 1.6rem;
+            color: #00bcd4;
+            margin-bottom: 15px;
+        }
+
+        /* Button Styles */
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #f5f5f5;
+            background-color: #0044cc;
+            border: 2px solid #ffd700;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #ffd700;
+            color: #0044cc;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #2b2b2b;
+                position: absolute;
+                top: 60px;
+                left: 0;
+            }
+
+            .nav-menu li {
+                padding: 15px;
+                text-align: center;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Hamburger Menu -->
+    <header class="navbar">
+        <div class="logo">PRMSU College of Engineering</div>
+        <nav>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <ul class="nav-menu" id="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="instruction.html">Instruction</a></li>
+                <li><a href="faculty.html">Faculty</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="content">
+        <h1>About the College of Engineering</h1>
+        <p>The College of Engineering at President Ramon Magsaysay State University (PRMSU) has a rich history, offering a variety of engineering programs to students...</p>
+
+        <!-- Engineering Program Details -->
+        <h2>Bachelor of Science in Civil Engineering</h2>
+        <p>The Bachelor of Science in Civil Engineering Program was first proposed in 2002 and officially started in the 2003-2004 school year...</p>
+
+        <h2>Bachelor of Science in Computer Engineering</h2>
+        <p>The Bachelor of Science in Computer Engineering began in 2002-2003 with its first batch graduating in 2007...</p>
+
+        <h2>Bachelor of Science in Electrical Engineering</h2>
+        <p>The BS in Electrical Engineering program was one of the oldest in the College of Engineering...</p>
+
+        <h2>Bachelor of Science in Mechanical Engineering</h2>
+        <p>The BS in Mechanical Engineering program began in the year 2001 with its first batch graduating the same year...</p>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>

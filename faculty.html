@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty - PRMSU College of Engineering</title>
+  <style>
+    /* Resetting default margins and padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styling */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #1e1e1e;
+      color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-image: url('https://www.transparenttextures.com/patterns/graphy.png');
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      width: 100%;
+      background-color: #2b2b2b;
+      color: #f5f5f5;
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 30px;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      border-bottom: 2px solid #ffd700;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .hamburger {
+      font-size: 1.5rem;
+      display: none;
+      cursor: pointer;
+      color: #ffd700;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+    }
+
+    .nav-menu li {
+      margin: 0 15px;
+    }
+
+    .nav-menu a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-menu a:hover {
+      color: #ffd700;
+    }
+
+    .dropdown-parent {
+      position: relative;
+    }
+
+    .dropdown-toggle:after {
+      content: " ▼";
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      background-color: #3a3a3a;
+      list-style: none;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ffd700;
+    }
+
+    .dropdown li {
+      padding: 5px 10px;
+    }
+
+    .dropdown li a {
+      color: #f5f5f5;
+    }
+
+    .dropdown li a:hover {
+      color: #ffd700;
+    }
+
+    .dropdown-parent:hover .dropdown {
+      display: block;
+    }
+
+    /* Content Styling */
+    .content {
+      width: 90%;
+      margin: 40px 0;
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #ffd700;
+      border-radius: 10px;
+      background-color: #2b2b2b;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ffd700;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+    }
+
+    h2, h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #00bcd4;
+      text-transform: uppercase;
+    }
+
+    p, li {
+      font-size: 1rem;
+      color: #dcdcdc;
+      line-height: 1.5;
+    }
+
+    ul {
+      text-align: left;
+      margin: 20px auto;
+      padding: 10px 20px;
+      list-style-type: none;
+      border-left: 3px solid #ffd700;
+    }
+
+    li {
+      padding: 5px 0;
+    }
+
+    li:before {
+      content: "• ";
+      color: #00bcd4;
+      font-weight: bold;
+    }
+
+    /* Faculty Columns Styling */
+    .department-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .department-column {
+      background-color: #2b2b2b;
+      padding: 15px;
+      border: 1px solid #ffd700;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .department-column h3 {
+      font-size: 1.6rem;
+      color: #00bcd4;
+      margin-bottom: 15px;
+    }
+
+    /* Button Styles */
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: #f5f5f5;
+      background-color: #0044cc;
+      border: 2px solid #ffd700;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #ffd700;
+      color: #0044cc;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #2b2b2b;
+        position: absolute;
+        top: 60px;
+        left: 0;
+      }
+
+      .nav-menu li {
+        padding: 15px;
+        text-align: center;
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">PRMSU Engineering</div>
+
+    <!-- Hamburger Icon -->
+    <div class="hamburger" id="hamburger">
+      ☰
+    </div>
+
+    <!-- Navigation Menu -->
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown-parent">
+        <a href="#instruction" class="dropdown-toggle">Instruction</a>
+        <ul class="dropdown">
+          <li><a href="#curricular-offerings">Curricular Offerings</a></li>
+          <li><a href="faculty.html">Faculty</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+ <!-- Main Content -->
+<section id="faculty" class="content">
+  <h1>Faculty Directory</h1>
+  <div class="faculty-columns">
+    <!-- College Dean Information -->
+    <div class="column">
+      <h2>College Dean</h2>
+      <p><strong>Engr. Gilbert D. Deboma, REE, M.Eng.</strong></p>
+      <p>Engr. Gilbert D. Deboma has been a faculty member at the College of Engineering for 24 years, currently holding the academic rank of Associate Professor V. He earned his Bachelor of Science in Electrical Engineering from the Technological Institute of the Philippines – Quezon City. Engr. Deboma furthered his education by obtaining a Master of Science in Electronics Engineering from Andong National University in South Korea. He is currently pursuing a PhD in Agricultural Engineering at Central Luzon State University.</p>
+      <p>Engr. Deboma is an active member of the Institute of Integrated Electrical Engineers, Inc., the accredited professional organization of electrical practitioners in the Philippines. He currently serves as the Dean of the College of Engineering, as well as the Program Chairperson for the Electrical Engineering Department.</p>
+    </div>
+
+    <!-- Program Chairpersons Section -->
+    <div class="column">
+      <h2>Program Chairpersons</h2>
+      <ul>
+        <li><strong>BS Civil Engineering (BSCE):</strong> Ferdinand D. Tabligan, RCE, M.Eng.</li>
+        <li><strong>BS Computer Engineering (BSCpE):</strong> Melojean C. Marave, LPT, MSIT</li>
+        <li><strong>BS Electrical Engineering (BSEE):</strong> Gilbert D. Deboma, REE, M.Eng.</li>
+        <li><strong>BS Mechanical Engineering (BSME):</strong> Marlon James A. Dedicatoria, RMEE, Ph.D.</li>
+        <li><strong>BS Mining Engineering (BSEM):</strong> Dorothy Joyce Solpico Desierto</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Department Columns Section -->
+    <div class="department-columns">
+      <!-- Civil Engineering -->
+      <div class="department-column">
+        <h3>Civil Engineering</h3>
+        <ul>
+          <li>Engr. Ronel E. Romero</li>
+          <li>Engr. Jamar Dalusong</li>
+          <li>Engr. Raymond Aramay</li>
+          <li>Engr. Abraham Antonio</li>
+          <li>Engr. Ma. Thereza Vicho</li>
+          <li>Engr. Victor Vicho</li>
+          <li>Engr. Elena Lyn Tombale</li>
+          <li>Engr. Ryv Anthony Bisquera</li>
+          <li>Engr. Joven Manangan</li>
+          <li>Engr. Eloisa Romulo</li>
+          <li>Engr. Marko Antonio Fernandez</li>
+          <li>Engr. Zendee Aramay</li>
+        </ul>
+      </div>
+
+      <!-- Computer Engineering -->
+      <div class="department-column">
+        <h3>Computer Engineering</h3>
+        <ul>
+          <li>Engr. Bryan Carlos Acain</li>
+          <li>Engr. Ricky Barrera</li>
+          <li>Engr. Dennize Jiana Basilio</li>
+          <li>Engr. Froilan Cantillo</li>
+          <li>Engr. Kirk Lee Leomo</li>
+          <li>Engr. Dionisio Martin JR</li>
+          <li>Engr. Allan Jay Morillo</li>
+          <li>Engr. Marteen Beravon Remolacio</li>
+          <li>Engr. Oliver Sabado JR</li>
+        </ul>
+      </div>
+
+      <!-- Electrical Engineering -->
+      <div class="department-column">
+        <h3>Electrical Engineering</h3>
+        <ul>
+          <li>Engr. Rue Lei Balicaco</li>
+          <li>Engr. Fernan Edarad</li>
+          <li>Engr. Christian Marafina</li>
+          <li>Engr. Doris Marquez</li>
+          <li>Engr. Senato Orianza</li>
+          <li>Engr. Mark Lester Parallag</li>
+        </ul>
+      </div>
+
+      <!-- Mechanical Engineering -->
+      <div class="department-column">
+        <h3>Mechanical Engineering</h3>
+        <ul>
+          <li>Engr. Ma. Karla Jessica Bautista</li>
+          <li>Engr. Jasper Anthony Cuevas</li>
+          <li>Engr. Nhoelle Padua</li>
+          <li>Engr. Michael Romualdo</li>
+        </ul>
+      </div>
+
+      <!-- Mechanical Engineering -->
+      <div class="department-column">
+        <h3>Allied and General Education</h3>
+        <ul>
+          <li>Engr. Melissa Ebue</li>
+          <li>Engr. Clarisse Hope Rico</li>
+          <li>DR. Emelyn Bugayong</li>
+          <li>Engr. Cindy Dullas</li>
+          <li>DR. Edna Punzalan</li>
+          <li>Ms. Jane Danilla</li>
+          <li>Ms. Madelle Santos</li>
+          <li>Ms. April Besa</li>
+          <li>Ms. Monica Parangat</li>
+          <li>Ms. Karen Quitoriano</li>
+          <li>Ms. Jio Erika Pelinio</li>
+          <li>Ms. Mae Joyce Velarde</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background-color: #2b2b2b; color: #f5f5f5; padding: 20px; text-align: center;">
+    <p>PRMSU College of Engineering | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Hamburger menu toggle
+    document.getElementById("hamburger").onclick = function() {
+      document.getElementById("nav-menu").classList.toggle("active");
+    };
+  </script>
+</body>
+</html>
+
+
